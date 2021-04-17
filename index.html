@@ -9,18 +9,22 @@
    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-   <div id="highscores">
-      <a href="#">View HighScores</a>
-   </div>
-   <div id="timer">
-      Timer: <span id="current-time">60</span>
+   <div class="container-fluid">
+      <div class="row">
+         <div id="highscores" class="col-3 align-self-start">
+            <a href="#score-board">View HighScores</a>
+         </div>
+         <div id="timer" class="col-2 offset-md-7">
+            <p>Timer: <span id="current-time">60</span></p>
+         </div>
+      </div>
    </div>
    
    <main class="container">
-      <div id="start-screen">
-         <h1>Code Quiz</h1>
-         <p>Welcome to my code quiz</p>
-         <button id="start-btn">START</button>
+      <div id="start-screen" class="row justify-content-center">
+         <h1 class="col-12">Code Quiz</h1>
+         <p class="col-12">Welcome to my code quiz</p>
+         <button id="start-btn" class="col-4 justify-content-center">START</button>
       </div>
       <div id="quiz">
          <h2 id="question-title"></h2>
@@ -30,6 +34,18 @@
          <h2>All Done</h2>
          <p>Your final score is <span id="final-score"></span></p>
          <p>Enter initials: <input type="text" id="initials" /> <button id="submit-btn">Submit</button></p>
+      </div>
+      <div id="score-board">
+         <table>
+            <tr>
+               <th>Player</th>
+               <th>Score</th>
+            </tr>
+            <tr>
+               <td id="player-initials"></td>
+               <td id="player-score"></td>
+            </tr>
+         </table>
       </div>
    </main>
 
