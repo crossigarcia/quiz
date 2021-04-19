@@ -1,0 +1,15 @@
+h1, h2, p {
+   text-align: center;
+   font-family: "Work Sans", sans-serif;
+}
+
+table {
+   text-align: center;
+   font-family: "Work Sans", sans-serif;
+}
+
+button {
+   text-align: center;
+   font-family: "Work Sans", sans-serif;
+   margin: 15px 15px 0 15px;
+}
