@@ -1,23 +1,23 @@
 let quizQuestions = [
    {
-      question: "question 1",
+      question: "Which of these options can be used to select an element?",
       options: [
-         "answer a",
-         "answer b",
-         "answer c",
-         "answer d"
+         ".querySelector()",
+         ".className = ''",
+         ".createElement()",
+         ".getItem()"
       ],
-      correctAnswer: "answer a"
+      correctAnswer: ".querySelector()"
    },
    {
-      question: "question 2",
+      question: "How many parameters can you give when you use .addEventListener?",
       options: [
-         "answer a",
-         "answer b",
-         "answer c",
-         "answer d"
+         "5",
+         "2",
+         "3",
+         "As many as you want!"
       ],
-      correctAnswer: "answer c"
+      correctAnswer: "3"
    },
    {
       question: "question 3",
@@ -84,8 +84,8 @@ function generateQuestion() {
       let answerButtonEl = document.createElement("button");
       answerButtonEl.textContent = currentQuestion.options[i];
       buttonsDiv.appendChild(answerButtonEl);
-      //answerButtonEl.addEventListener('click', saveScore(answerButtonEl, currentQuestion));
-      answerButtonEl.addEventListener('click', nextQuestion);
+      answerButtonEl.addEventListener('click', saveScore(answerButtonEl, currentQuestion));
+      //answerButtonEl.addEventListener('click', nextQuestion);
    };
    choicesEl.appendChild(buttonsDiv);
 };
@@ -103,13 +103,19 @@ function nextQuestion() {
    }
 };
 
-// function saveScore(answerButtonEl, currentQuestion) {
-//     if (answerButtonEl.textContent === currentQuestion.correctAnswer) {
-//       playerScore = playerScore + 5;
-//    } else {
-//       countDown = countDown - 5;
-//    }  
-//  };
+function saveScore(answerButtonEl, currentQuestion) {
+   if (answerButtonEl.textContent === currentQuestion.correctAnswer) {
+      console.log(answerButtonEl.textContent);
+      console.log(currentQuestion.correctAnswer);
+      playerScore = playerScore + 5;
+      //console.log(playerScore);
+   } else {
+       countDown = countDown - 5;
+       //console.log(countDown);
+   }  
+   answerButtonEl.addEventListener('click', nextQuestion);
+   
+};
 
 function clockTick() {
  countDown--;
@@ -129,15 +135,26 @@ function endQuiz() {
    let finalScoreEl = document.querySelector('#final-score');
    finalScoreEl.textContent = playerScore;
 
-   //setItem localStorage, initials and score
-
-   //add event listener to submit button, take you to score-board
+   submitButtonEl.addEventListener('click', scoreBoard);
 
 };
 
 function scoreBoard() {
+   let initialsEl = document.getElementById('initials');
+   let playerInitials = initialsEl.value.trim();
+   localStorage.setItem("initials", playerInitials);
+
+   localStorage.setItem("score", playerScore);
+
    endQuizEl.style.display = "none";
    scoreBoardEl.style.display = "block";
+
+   let playerInitialsEl = document.querySelector('player-initials');
+   let playerScoreEl = document.querySelector('player-score');
+
+   playerInitialsEl.textContent = localStorage.getItem('initials');
+   playerScoreEl.textContent = localStorage.getItem('score');
+
 };
 
 startButtonEl.onclick = startQuiz
